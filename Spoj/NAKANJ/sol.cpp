@@ -28,6 +28,7 @@ void bfs(int i, int j) {
             if(val(new_i, new_j)) {
                 q.push({new_i, new_j}), vis[new_i][new_j] = 1, dist[{new_i, new_j}] = dist[{re.first, re.second}] + 1;
             }
+            
         }
     }
 }
@@ -37,15 +38,9 @@ void solve() {
     string a, b; cin >> a >> b;
     a[0] -= 'a', b[0] -= 'a';
     
-    bfs((int)a[0], abs((int)a[1] - '0' - 8));
+    bfs((int)b[0], abs((int)b[1] - '0' - 8));
 
-    int ans = INT_MAX;
-    for(auto &el:dist) {
-        if(el.first == make_pair((int)b[0], abs((int)b[1] - '0' - 8))) {
-            ans = min(ans, el.second);
-        }
-    }
-
+    int ans = dist[{(int)a[0], abs((int)a[1] - '0' - 8)}];
     cout << ans << endl;
 }
 
