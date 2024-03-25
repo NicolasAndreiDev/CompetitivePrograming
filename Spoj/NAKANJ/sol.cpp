@@ -28,7 +28,6 @@ void bfs(int i, int j) {
             if(val(new_i, new_j)) {
                 q.push({new_i, new_j}), vis[new_i][new_j] = 1, dist[{new_i, new_j}] = dist[{re.first, re.second}] + 1;
             }
-            
         }
     }
 }
