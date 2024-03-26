@@ -9,19 +9,20 @@ typedef long long ll;
 typedef pair<int, int> ii;
 
 void solve() {
-    int n, k; cin >> n >> k;
-    vector<int> m(n);
-    for(auto &el:m) cin >> el;
-
-    vector<int> dp(n, INF);
-    dp[0] = 0;
+    int n, w; cin >> n >> w;
+    vector<ii> item(n);
+    for(auto& i:item) cin >> i.first >> i.second;
+    
+    vector<ll> dp(w+1);
     for(int i=0;i<n;i++) {
-        for(int j=i+1;j<=i+k;j++) {
-            if(j < n) dp[j] = min(dp[j], dp[i] + abs(m[i] - m[j]));
+        for(int j=w-item[i].first;j>=0;j--) {
+            dp[j + item[i].first] = max(dp[j + item[i].first], dp[j] + item[i].second);
         }
     }
 
-    cout << dp[n - 1] << endl;
+    ll ans = 0;
+    for(int i=0;i<=w;i++) ans = max(ans, dp[i]);
+    cout << ans << endl;
 }
 
 signed main() {
