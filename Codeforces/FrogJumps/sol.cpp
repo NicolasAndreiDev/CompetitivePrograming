@@ -9,7 +9,7 @@ typedef long long ll;
 typedef pair<int, int> ii;
 
 int binarySearch(string s, int n) {
-    int l = 1, r = n+1;
+    int l = 1, r = n+1, ans = 0;
     
     while(l <= r) {
         int last = -1;
