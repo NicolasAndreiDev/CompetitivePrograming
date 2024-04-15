@@ -15,13 +15,14 @@ void solve() {
 
     int ans = 0;
     for(int mask=1;mask<(1<<n);mask++){
-	int sum=0, size=0, minVal=1e9;
-	for(int i=0;i<n;i++)
-		if((mask>>i)&1){
-			sum += m[i];
-			size++;
-			minVal = min(minVal, m[i]);
-		}
+        int sum=0, size=0, minVal=1e9;
+        for(int i=0;i<n;i++){
+            if((mask>>i)&1){
+                sum += m[i];
+                size++;
+                minVal = min(minVal, m[i]);
+            }
+        }
 
 	    if(sum>=s && minVal>sum-s) ans = max(ans, size);
     }
