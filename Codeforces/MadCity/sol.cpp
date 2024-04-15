@@ -11,25 +11,24 @@ typedef pair<int, int> ii;
 const int MAXN = 2e5+5;
 vector<vector<int>> adj(MAXN);
 vector<int> vis(MAXN), dist(MAXN);
-int node = -1;
 
-bool dfs(int v, int p) {
+bool dfs(int *node, int v, int p) {
     if(vis[v]) {
-        node = v;
+        *node = v;
         return true;
     }
     vis[v] = 1;
 
     for(auto& u:adj[v]) {
         if(u != p) {
-            if(dfs(u, v)) return true;
+            if(dfs(node, u, v)) return true;
         }
     }
 
     return false;
 }
 
-bool bfs(int n, int m, int v) {
+bool bfs(int node, int n, int m, int v) {
     queue<int> q; q.push(node);
 
     vis.assign(MAXN, 0);
@@ -58,11 +57,12 @@ void solve() {
         adj[b].push_back(a);
     }
 
+    int node = -1;
     if(m == v) {
         cout << "NO" << endl;
     } else {
-        dfs(v, -1);
-        if(node != -1) cout << (bfs(n, m, v) ? "YES" : "NO") << endl;
+        dfs(&node, v, -1);
+        if(node != -1) cout << (bfs(node, n, m, v) ? "YES" : "NO") << endl;
         else cout << "NO" << endl;
     }
 }   
